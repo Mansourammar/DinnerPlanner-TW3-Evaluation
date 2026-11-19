@@ -1,4 +1,33 @@
+
 /* A debug class, used to separate components graphically during development */
 .debug {
-    border-style:solid;
+    border-style: solid;
+}
+
+.rightAligned {
+    text-align: right;
+}
+
+@media (min-width: 600px) {
+    .flexParent {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .sidebar {
+        flex: 0 0 240px;
+        width: 240px;
+        box-sizing: border-box;
+        overflow-wrap: anywhere;
+    }
+
+    .sidebar table {
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    .mainContent {
+        flex: 1;
+        min-width: 0;
+    }
 }

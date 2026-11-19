@@ -1,8 +1,14 @@
+
 import { createApp, h } from "vue";
-window.React= {createElement:h};  // needed in the lab because it works with both React and Vue
+import { reactiveModel } from "../vueReactiveModel.js";
+import { VueRoot, makeRouter } from "./VueRoot.jsx";
 
-// mount the app in the browser page. Test at http://localhost:8080/vue.html
-const app= createApp(function render(){ return "Hello Vue world!";});
-app.mount('#TODO'); 
+window.React = { createElement: h };
 
+const app = createApp(function render() {
+    return <VueRoot model={reactiveModel} />;
+});
 
+app.use(makeRouter(reactiveModel));
+
+app.mount("#root");

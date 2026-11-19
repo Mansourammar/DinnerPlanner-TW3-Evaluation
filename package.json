@@ -15,7 +15,7 @@
     "react-dom": "latest",
     "react-router-dom": "latest",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "^4.6.5"
   },
   "devDependencies": {
     "@babel/core": "latest",
