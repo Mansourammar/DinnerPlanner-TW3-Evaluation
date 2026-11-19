@@ -7,6 +7,17 @@ export function DetailsView(props) {
     const price = dish.pricePerServing;
     const totalPrice = price * guests;
 
+    const instructionsDocument = new DOMParser().parseFromString(
+        dish.instructions || "",
+        "text/html"
+    );
+
+    const instructionSteps = Array.from(
+        instructionsDocument.querySelectorAll("li")
+    ).map(function instructionStepCB(item) {
+        return item.textContent.trim();
+    });
+
     function addToMenuACB() {
         props.onAddToMenu?.();
         window.location.hash = "#/search";
@@ -21,6 +32,7 @@ export function DetailsView(props) {
             <button
                 onClick={addToMenuACB}
                 disabled={props.isDishInMenu}
+                style={{ marginRight: "12px" }}
             >
                 Add to menu
             </button>
@@ -65,7 +77,15 @@ export function DetailsView(props) {
 
             <h3>Instructions</h3>
 
-            <p>{dish.instructions}</p>
+            {instructionSteps.length > 0 ? (
+                <ol>
+                    {instructionSteps.map(function stepCB(step, index) {
+                        return <li key={index}>{step}</li>;
+                    })}
+                </ol>
+            ) : (
+                <p>{instructionsDocument.body.textContent?.trim()}</p>
+            )}
 
             <a
                 href={dish.sourceUrl}

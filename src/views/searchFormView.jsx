@@ -45,7 +45,10 @@ export function SearchFormView(props) {
                 )}
             </select>
 
-            <button onClick={searchClickACB}>
+            <button
+                onClick={searchClickACB}
+                style={{ marginRight: "12px" }}
+            >
                 Search!
             </button>
 
